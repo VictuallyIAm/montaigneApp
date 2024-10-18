@@ -17,12 +17,9 @@
   <v-row class="my-16">
     <NiggersScrollCarousel />
   </v-row>
-  <!-- <WaveForm /> -->
 </template>
 
 <script setup>
-import WaveForm from "@/components/WaveForm.vue";
-
 const handleSpecialOfferClick = () => {
   console.log("specialoffer clicked!");
 };

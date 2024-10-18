@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    color="#952175"
-    class="mx-4 my-4 v-card-scaled"
-    @click.stop="() => router.push('/product')"
-  >
+  <v-card color="#952175" class="mx-4 my-4 v-card-scaled">
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
         <v-card-title class="text-h5">
@@ -24,11 +20,17 @@
           <div style="width: 50%">
             <v-btn
               width="100%"
-              prepend-icon="mdi-play"
+              :prepend-icon="isPlaying ? 'mdi-pause' : 'mdi-play'"
               variant="tonal"
-              @click.stop="() => console.log('clcik')"
-              >Play</v-btn
+              @click.stop="
+                () => {
+                  isPlaying ? audio.pause() : audio.play();
+                  isPlaying = !isPlaying;
+                }
+              "
             >
+              {{ isPlaying ? "Pause" : "Play" }}
+            </v-btn>
           </div>
           <div style="width: 50%">
             <v-btn
@@ -55,8 +57,13 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import sound from "../assets/audio.mp3";
 
 const router = useRouter();
+
+const isPlaying = ref(false);
+
+const audio = new Audio(sound);
 </script>
 
 <style lang="scss" scoped>

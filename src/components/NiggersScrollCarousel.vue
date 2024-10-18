@@ -1,13 +1,13 @@
 <template>
-  <div class="items-wrap">
-    <div class="items marquee">
-      <v-avatar class="item" v-for="avatar in avatars" :key="avatar">
+  <div class="carousel-wrap">
+    <div class="carousel marquee">
+      <v-avatar class="carousel-item" v-for="avatar in avatars" :key="avatar">
         <v-img :src="avatar"></v-img>
       </v-avatar>
     </div>
-    <div aria-hidden="true" class="items marquee">
-      <v-avatar class="item" v-for="avatar in avatars" :key="avatar">
-        <v-img :src="avatar" class="item-img"></v-img>
+    <div aria-hidden="true" class="carousel marquee">
+      <v-avatar class="carousel-item" v-for="avatar in avatars" :key="avatar">
+        <v-img :src="avatar"></v-img>
       </v-avatar>
     </div>
   </div>
@@ -33,15 +33,15 @@ const avatars = ref([
   font: 16px / 1.4 sans-serif;
 }
 
-.items-wrap {
+.carousel-wrap {
   position: relative;
   display: flex;
   overflow: hidden;
   user-select: none;
   gap: 10px;
 }
-.items-wrap:before,
-.items-wrap:after {
+.carousel-wrap:before,
+.carousel-wrap:after {
   content: "";
   height: 100%;
   top: 0;
@@ -50,7 +50,7 @@ const avatars = ref([
   z-index: 1;
   pointer-events: none;
 }
-.items {
+.carousel {
   flex-shrink: 0;
   display: flex;
   gap: 10px;
@@ -58,11 +58,11 @@ const avatars = ref([
   justify-content: space-around;
   min-width: 100%;
 }
-.item {
+.carousel-item {
   background: #ccc;
   flex: 0 0 auto;
-  width: 150px;
-  height: 150px;
+  width: 150px !important;
+  height: 150px !important;
   counter-increment: item;
   border-radius: 100%;
   display: flex;
@@ -75,33 +75,12 @@ const avatars = ref([
   transition: all 0.1s ease-in-out;
 }
 
-.item:before {
+.carousel-item:before {
   content: counter(item);
 }
 
 .marquee {
   animation: scroll 60s linear infinite;
-}
-.reverce {
-  animation-direction: reverse;
-}
-
-.perfscan {
-  margin: 20px 0;
-  text-align: center;
-  bottom: 0;
-  background: #fff;
-  padding: 5px;
-}
-.perfscan hr {
-  border: solid #999;
-  border-width: 1px 0 0 0;
-  max-width: 50%;
-  margin: 0 auto 20px;
-}
-.perfscan a {
-  color: #000;
-  font-weight: bold;
 }
 
 @keyframes scroll {

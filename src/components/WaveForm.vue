@@ -1,5 +1,5 @@
 <template>
-  <vue-wave-surfer :src="sound" :options="options"></vue-wave-surfer>
+  <div ref="waveform"></div>
 </template>
 
 <script setup>
@@ -7,43 +7,35 @@ import { onMounted } from "vue";
 import WaveSurfer from "wavesurfer.js";
 import sound from "../assets/audio.mp3";
 
-// const waveform = ref(null);
-// let wavesurfer = null;
+const waveform = ref(null);
+let wavesurfer = null;
 
-// onMounted(() => {
-//   wavesurfer = WaveSurfer.create({
-//     container: waveform.value,
-//     waveColor: "violet",
-//     progressColor: "purple",
-//     barWidth: 2,
-//     barGap: 1,
-//     barRadius: 2,
-//     url: "../assets/audio.mp3",
-//   });
+onMounted(() => {
+  const audio = new Audio(sound);
 
-//   // wavesurfer.load("../assets/audio.mp3");
+  wavesurfer = WaveSurfer.create({
+    container: waveform.value,
+    waveColor: "violet",
+    progressColor: "purple",
+    barWidth: 2,
+    barGap: 1,
+    barRadius: 7,
+    media: audio,
+    height: 33,
+    width: 300,
+    // url: "https://wavesurfer.xyz/examples/audio/demo.wav",
+  });
 
-//   wavesurfer.on("ready", () => {
-//     console.log("WaveSurfer ready");
-//   });
-//   wavesurfer.on("load", (url) => {
-//     console.log(url);
-//   });
+  wavesurfer.on("click", () => {
+    wavesurfer.play();
+  });
+});
 
-//   wavesurfer.on("redrawcomplete", () => {
-//     console.log("Redraw began");
-//   });
-
-//   wavesurfer.on("click", () => {
-//     wavesurfer.play();
-//   });
-// });
-
-// onBeforeUnmount(() => {
-//   if (wavesurfer) {
-//     wavesurfer.destroy();
-//   }
-// });
+onBeforeUnmount(() => {
+  if (wavesurfer) {
+    wavesurfer.destroy();
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>
