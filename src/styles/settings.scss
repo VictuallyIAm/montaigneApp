@@ -1,0 +1,3 @@
+@use 'vuetify/settings' with (
+  $overlay-opacity: var(--v-overlay-opacity, 0.5)
+);
