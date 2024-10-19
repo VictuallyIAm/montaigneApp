@@ -6,14 +6,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "firebase": "firebase emulators:start --import=./local --export-on-exit"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "@vueuse/core": "^11.1.0",
     "core-js": "^3.37.1",
+    "firebase": "^10.14.1",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
+    "vuefire": "^3.2.0",
     "vuetify": "^3.6.11",
     "wavesurfer.js": "^7.8.7"
   },

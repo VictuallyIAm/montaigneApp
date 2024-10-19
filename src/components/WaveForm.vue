@@ -5,25 +5,27 @@
 <script setup>
 import { onMounted } from "vue";
 import WaveSurfer from "wavesurfer.js";
-import sound from "../assets/audio.mp3";
 
 const waveform = ref(null);
 let wavesurfer = null;
 
-onMounted(() => {
-  const audio = new Audio(sound);
+const props = defineProps({
+  width: Number,
+  height: Number,
+});
 
+onMounted(() => {
   wavesurfer = WaveSurfer.create({
     container: waveform.value,
     waveColor: "violet",
     progressColor: "purple",
-    barWidth: 2,
+    barWidth: 1,
     barGap: 1,
     barRadius: 7,
-    media: audio,
-    height: 33,
-    width: 300,
-    // url: "https://wavesurfer.xyz/examples/audio/demo.wav",
+    // media: audio,
+    height: props.height,
+    width: props.width,
+    url: "/audio/audio.mp3",
   });
 
   wavesurfer.on("click", () => {

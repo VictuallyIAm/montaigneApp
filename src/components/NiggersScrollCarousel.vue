@@ -2,27 +2,29 @@
   <div class="carousel-wrap">
     <div class="carousel marquee">
       <v-avatar class="carousel-item" v-for="avatar in avatars" :key="avatar">
-        <v-img :src="avatar"></v-img>
+        <v-img :src="'/images/' + avatar"></v-img>
       </v-avatar>
     </div>
     <div aria-hidden="true" class="carousel marquee">
       <v-avatar class="carousel-item" v-for="avatar in avatars" :key="avatar">
-        <v-img :src="avatar"></v-img>
+        <v-img :src="'/images/' + avatar"></v-img>
       </v-avatar>
     </div>
   </div>
 </template>
 
 <script setup>
-const avatars = ref([
-  "https://randomuser.me/api/portraits/men/1.jpg",
-  "https://randomuser.me/api/portraits/women/2.jpg",
-  "https://randomuser.me/api/portraits/men/3.jpg",
-  "https://randomuser.me/api/portraits/women/4.jpg",
-  "https://randomuser.me/api/portraits/men/5.jpg",
-  "https://randomuser.me/api/portraits/men/6.jpg",
-  "https://randomuser.me/api/portraits/men/7.jpg",
-]);
+const avatars = [
+  "img1.jpg",
+  "img2.jpg",
+  "img1.jpg",
+  "img2.jpg",
+  "img1.jpg",
+  "img2.jpg",
+  "img1.jpg",
+  "img2.jpg",
+  "img1.jpg",
+];
 </script>
 
 <style scoped lang="scss">
@@ -54,16 +56,13 @@ const avatars = ref([
   flex-shrink: 0;
   display: flex;
   gap: 10px;
-  counter-reset: item;
   justify-content: space-around;
   min-width: 100%;
 }
 .carousel-item {
-  background: #ccc;
   flex: 0 0 auto;
   width: 150px !important;
   height: 150px !important;
-  counter-increment: item;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -73,10 +72,6 @@ const avatars = ref([
   color: #fff;
   margin: 20px 0;
   transition: all 0.1s ease-in-out;
-}
-
-.carousel-item:before {
-  content: counter(item);
 }
 
 .marquee {

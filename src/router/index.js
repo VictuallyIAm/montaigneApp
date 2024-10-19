@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router/auto";
-import { setupLayouts } from "virtual:generated-layouts";
-import { routes } from "vue-router/auto-routes";
+import Home from "@/pages/Home.vue";
+import Product from "@/pages/Product.vue";
+import Cart from "@/pages/Cart.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(routes),
+  routes: [
+    { path: "/", component: Home, name: "Home" },
+    { path: "/product/:id", component: Product, name: "Product" },
+    { path: "/cart", component: Cart, name: "Cart" },
+  ],
 });
 
 router.onError((err, to) => {
@@ -22,9 +27,10 @@ router.onError((err, to) => {
 });
 
 router.beforeEach(async (to) => {
-  if (to.fullPath === "/") {
-    return "/home";
-  }
+  // console.log(to);
+  // if (to.fullPath === "/") {
+  //   return "/montaigneApp/home";
+  // }
 });
 
 router.isReady().then(() => {

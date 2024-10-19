@@ -46,7 +46,6 @@ export default defineConfig({
     }),
   ],
   define: { 'process.env': {} },
-  base: '/montaigneApp/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
